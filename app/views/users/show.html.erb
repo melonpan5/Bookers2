@@ -1,0 +1,51 @@
+<div class="container"> <!-- ここを追加 -->
+    <div class="row">   <!-- ここを追加 -->
+    <div class="col-xs-3" style="background-color: white;">
+    <!-- 左側のユーザーメニューここから -->
+        <h1>User info</h1>
+            <div class="profile-container">
+            <%= attachment_image_tag @user, :profile_image,　format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %><br>
+                <table>
+                  <tr>
+                    <th>name</th>
+                    <td><%= @user.name %></td>
+                </tr>
+                  <tr>
+                    <th>introduction</th> 
+                    <td><%= @user.introduction %></td>
+            </tr>
+                </table>
+        <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+        <%= form_for(@new) do |f| %>
+          <h1>New book</h1><br>
+          Title<br>
+          <%= f.text_field :title %><br>
+          Opinion<br>
+          <%= f.text_area :body %><br>
+          <%= f.submit %><br>
+        <% end %>
+      </div>
+    <!-- 左側のユーザーメニューここまで -->
+    </div>
+    <div class="col-xs-9">   
+      <h1>Books</h1>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>  
+             <% @book.each do |book| %>
+                <tr>
+                  <td><%=link_to book.title, book_path(book.id) %></td>
+                  <td><%= book.body %></td>
+                </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
+</div>
