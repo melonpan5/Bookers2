@@ -19,20 +19,21 @@
               <%= link_to edit_user_path(@user), class: 'col-xs-12 btn btn-default glyphicon glyphicon-wrench' do %>
               <% end %>
             </p>
-          <% if @book.errors.any? %>
+          <% if @new.errors.any? %>
             <p>error</p>
-              <%= @book.errors.count %>件のエラーが発生しました
-              <% @book.errors.full_messages.each do |message| %>
+              <%= @new.errors.count %>件のエラーが発生しました
+              <% @new.errors.full_messages.each do |message| %>
                 <%= message %>
               <% end %>
- 
+          <% end %>
+          <%= form_for(@new) do |f| %>
           <h1>New book</h1><br>
           Title<br>
           <%= f.text_field :title %><br>
           Opinion<br>
           <%= f.text_area :body %><br>
           <%= f.submit %><br>
-        <% end %>
+          <% end %>
       </div>
     </div>
         <!-- 左側のユーザーメニューここまで -->

@@ -2,10 +2,11 @@ class UsersController < ApplicationController
 
 
   def show
-  	@user = User.find(current_user.id)
-    @book = @user.books
+    @user = User.find(params[:id])
+    @books = @user.books
     @new = Book.new
-    @books = Book.where(user_id: params[:id])
+    #@books = Book.where(user_id: params[:id])
+    #@current_user = User.find(current_user.id)
   end
 
 
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
   def index
     @user = User.find(current_user.id)
   	@users = User.all
-    @book = Book.new
+    @new = Book.new
   end
 
   def destroy

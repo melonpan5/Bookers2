@@ -18,11 +18,11 @@
       		</tr>
 				</table>
         <p><%= link_to edit_user_path(@user), class: 'col-xs-12 btn btn-default glyphicon glyphicon-wrench ' do %><% end %></p>
-        <%= form_for(@book) do |f| %>
-          <% if @book.errors.any? %>
+        <%= form_for(@new) do |f| %>
+          <% if @new.errors.any? %>
           <p>error</p>
-            <%= @book.errors.count %>件のエラーが発生しました
-            <% @book.errors.full_messages.each do |message| %>
+            <%= @new.errors.count %>件のエラーが発生しました
+            <% @new.errors.full_messages.each do |message| %>
               <%= message %>
             <% end %>
           <% end %>
