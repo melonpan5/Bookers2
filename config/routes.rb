@@ -4,8 +4,8 @@ devise_for :users
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'homes#index'
-  get 'homes'  => 'homes#index'
-  get 'show'  => 'homes#show'
+  get '/'  => 'homes#index'
+  get 'home/about'  => 'homes#about'
 resources :users, only: [:index, :show, :create, :edit, :update, :destroy]
 resources :books, only: [ :index, :new, :show, :create, :edit, :update, :destroy ]
 end

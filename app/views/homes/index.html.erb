@@ -1,9 +1,16 @@
-<h2>welcome to </h2><br>
-<h1>Bookers !!</h1>
-<h2>In Bookers,</h2>
-you can share and exchange your opinions , inpressions , and emotions <br>
-about various books!
-<p><%= link_to 'Log in', user_session_path %></p>
-<p><%= link_to 'Sign Up', new_user_registration_path %></p>
+<div class="top-message col-md-offset-3 col-md-6">
+    <h1>welcome to <span class="glyphicon glyphicon-book"><strong>Bookers</strong>  !!</span></h1>
+          <p>In  <span class="glyphicon glyphicon-book"></span><strong>Bookers</strong>, </p>
+          <p>you can share and exchange  your opinions , inpressions , and emotions</p>
+          <p> about various books!</p>
 
-
+    <div class="btn-wrapper">
+      <div class="row">
+        <%= link_to user_session_path, class:'btn btn-info col-xs-10 col-xs-offset-1 sign_in' do %>Log in<% end %>
+      </div>
+      <div class="row">
+        <%= link_to new_user_registration_path, class:'btn btn-success col-xs-10 col-xs-offset-1 sign_up' do %>Sign Up<% end %>
+      </div>
+    </div>
+            
+  </div>
