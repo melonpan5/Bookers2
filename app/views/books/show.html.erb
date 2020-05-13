@@ -2,42 +2,8 @@
     <div class="row">   <!-- ここを追加 -->
     <div class="col-xs-3" style="background-color: white;">
     <!-- 左側のユーザーメニューここから -->
-        <h4><%=  notice %></h4>
-        <h1>User info</h1>
-            <div class="profile-container">
-            <%= attachment_image_tag @user, :profile_image,　format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %><br>
-                <table>
-                  <tr>
-                    <th>name</th>
-                    <td><%= @user.name %></td>
-                </tr>
-                  <tr>
-                    <th>introduction</th> 
-                    <td><%= @user.introduction %></td>
-            </tr>
-          </table>
-      <% if @user == current_user %>
-        <p><%= link_to edit_user_path(@user), class: 'col-xs-12 btn btn-default glyphicon glyphicon-wrench ' do %><% end %></p>
-      <% else %>
-        <p><%= link_to user_path(@user), class: 'col-xs-12 btn btn-default glyphicon glyphicon-wrench ' do %><% end %></p>
-      <% end %>
-        <% if @new.errors.any? %>
-          <p>error</p>
-            <%= @new.errors.count %>件のエラーが発生しました
-            <% @new.errors.full_messages.each do |message| %>
-              <%= message %>
-            <% end %>
-          <% end %>
+ <%= render 'books/bookform', user: @user,  new:@new %>
 
-        <%= form_for(@new) do |f| %>
-          <h1>New book</h1><br>
-          Title<br>
-          <%= f.text_field :title %><br>
-          Opinion<br>
-          <%= f.text_area :body %><br>
-          <%= f.submit %><br>
-        <% end %>
-      </div>
     <!-- 左側のユーザーメニューここまで -->
     </div>
     <div class="col-xs-9">   
