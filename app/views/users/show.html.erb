@@ -16,11 +16,7 @@
                     <td><%= @user.introduction %></td>
             </tr>
                 </table>
-      <% if @user == current_user.id %>
         <p><%= link_to edit_user_path(@user), class: 'col-xs-12 btn btn-default glyphicon glyphicon-wrench ' do %><% end %></p>
-      <% else %>
-        <p><%= link_to user_path, class: 'col-xs-12 btn btn-default glyphicon glyphicon-wrench ' do %><% end %></p>
-      <% end %>
         <% if @new.errors.any? %>
           <p>error</p>
             <%= @new.errors.count %>件のエラーが発生しました

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+before_action :authenticate_user!
 
   def show
     @user = User.find(params[:id])
@@ -11,17 +12,20 @@ class UsersController < ApplicationController
 
 
   def edit
-        @user = User.find(current_user.id)
+    @user = User.find(params[:id])
+    if @user.id != current_user.id
+    redirect_to user_path(current_user)
+    end
   end
   
   def update
-  	 @user = User.find(params[:id])
-     if @user.update(user_params)
-    redirect_to user_path(@user.id)
-    flash[:notice] = 'successfully　更新しました'
-   else
-    render :edit
-   end
+  	@user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(current_user)
+      flash[:notice] = 'successfully　更新しました'
+    else
+     render :edit
+    end
   end
 
   def index
@@ -31,24 +35,26 @@ class UsersController < ApplicationController
   end
 
   def destroy
-     @user = User.find(params[:id])
+       @user = User.find(params[:id])
      if @user.destroy
-    redirect_to homes
-    flash[:notice] = 'Signed out successfully'
-   else
-    render :show
-   end
+      redirect_to homes
+      flash[:notice] = 'Signed out successfully'
+     else
+      render :show
+     end
   end
 
-private
- def user_params
-    params.require(:user).permit(:name, :profile_image, :introduction)
-end
 
- protected
-  # アカウント編集後、マイページへに移動する
+
+  private
+   def user_params
+      params.require(:user).permit(:name, :profile_image, :introduction)
+  end
+
+  protected
+    # アカウント編集後、マイページへに移動する
   def after_update_path_for(resource)
-    user_path(id: current_user.id)
+      user_path(id: current_user.id)
   end
 
 end

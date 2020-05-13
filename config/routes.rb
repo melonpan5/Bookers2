@@ -8,4 +8,8 @@ devise_for :users
   get 'home/about'  => 'homes#about'
 resources :users, only: [:index, :show, :create, :edit, :update, :destroy]
 resources :books, only: [ :index, :new, :show, :create, :edit, :update, :destroy ]
+
+
+get '*path', controller: 'application', action: 'render_404'
+
 end
